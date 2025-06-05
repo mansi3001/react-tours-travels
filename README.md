@@ -68,3 +68,44 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+
+I want to create a tourism project in ReactJS with the following features:
+
+🔹 General Description:
+It's a tourism booking website.
+
+Users can browse packages and book them.
+
+There are 3 panels: User, Admin, and Guide.
+
+🔹 Admin Panel Features:
+Admin login/logout
+Manage users (view, delete)
+Manage guides
+Manage travel packages (add/edit/delete)
+View booking details
+
+🔹 Guide Panel Features:
+Guide login
+View assigned bookings
+Update tour status
+
+🔹 User Panel:
+Browse packages
+Book tours
+View booking history
+
+🔹 Technology Stack:
+Frontend: ReactJS
+Backend: Firebase (Firestore, Auth, Storage)
+Storage: Firebase Firestore for main data, localStorage for caching user info or cart
+
+🔹 Requirements:
+Login system using Firebase Auth for Admin, Guide, and Users
+Use Firebase Firestore to store all data (packages, bookings, users)
+Store logged-in user info in localStorage
+Responsive UI with Tailwind CSS
+
+💬 Please provide me the full project code step-by-step starting with Firebase setup and React folder structure
