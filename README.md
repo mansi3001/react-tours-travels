@@ -107,9 +107,9 @@ Use Firebase Firestore to store all data (packages, bookings, users, admin, guid
 Store logged-in user info in localStorage
 Responsive UI with Tailwind CSS
 
-FIRBASE_API_KEY = "AIzaSyCWwg-PISrhJ4k-qRzFhjTM7dllV3GaK10"
+<!-- FIRBASE_API_KEY = "AIzaSyCWwg-PISrhJ4k-qRzFhjTM7dllV3GaK10"
 FIRBASE_AUTH_DOMAIN = "tourism-booking-39ca2.firebaseapp.com"
 FIRBASE_PROJECT_ID = "tourism-booking-39ca2"
 FIRBASE_STORAGE_BUCKET = "tourism-booking-39ca2.firebasestorage.app"
 FIRBASE_SENDER_ID = "1029009783078"
-FIRBASE_APP_ID = "1:1029009783078:web:560a6177b2d4315baa29e7"
+FIRBASE_APP_ID = "1:1029009783078:web:560a6177b2d4315baa29e7" -->
