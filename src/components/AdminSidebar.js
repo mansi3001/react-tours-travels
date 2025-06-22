@@ -10,6 +10,7 @@ const AdminSidebar = () => (
       <li className="mb-2"><Link to="/admin/users">Users</Link></li>
       <li className="mb-2"><Link to="/admin/guides">Guides</Link></li>
       <li className="mb-2"><Link to="/admin/packages">Packages</Link></li>
+      <li className="mb-2"><Link to="/admin/bookings">Bookings</Link></li>
     </ul>
   </nav>
 );

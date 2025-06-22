@@ -1,12 +1,13 @@
 import React, { useState } from 'react';
 import { auth, db } from '../../firebase';
 import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
 import PasswordInput from '../../components/PasswordInput';
 import { doc, setDoc } from 'firebase/firestore';
+import { useNavigate } from 'react-router-dom';
 
 const Register = () => {
   const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const navigate = useNavigate();
@@ -18,13 +19,14 @@ const Register = () => {
       const userCredential = await createUserWithEmailAndPassword(auth, email, password);
       await setDoc(doc(db, 'users', userCredential.user.uid), {
         email,
+        name,
         role: 'user',
       });
       localStorage.setItem('user', JSON.stringify({
         ...userCredential.user,
-        role: 'user'
+        role: 'user',
       }));
-      navigate('/user/login');
+      navigate('/login');
     } catch (err) {
       setError(err.message);
     }
@@ -35,6 +37,14 @@ const Register = () => {
       <form onSubmit={handleRegister} className="bg-white p-8 rounded shadow-md w-full max-w-md">
         <h2 className="text-2xl font-bold mb-6">User Register</h2>
         {error && <p className="text-red-500 mb-4">{error}</p>}
+        <input
+          type="text"
+          placeholder="Name"
+          className="w-full mb-4 px-4 py-2 border rounded"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
         <input
           type="email"
           placeholder="Email"

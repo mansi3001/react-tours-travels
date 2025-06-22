@@ -1,5 +1,5 @@
 // src/App.js
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 // Public Pages
@@ -32,10 +32,16 @@ import BookingHistory from "./pages/user/BookingHistory";
 import UpdateBookingStatus from "./pages/guide/UpdateBookingStatus";
 import Profile from "./pages/user/Profile";
 import PackageDetails from "./pages/user/PackageDetails";
+import AllBookings from "./pages/admin/AllBookings";
 
 function App() {
-  const userData = JSON.parse(localStorage.getItem("user"));
-  const role = userData?.role;
+  const [role, setRole] = useState(null);
+
+  useEffect(() => {
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    setRole(storedUser?.role || null);
+  }, []);
+
   return (
     <Router>
       <Header />
@@ -60,6 +66,7 @@ function App() {
               <Route path="/admin/users" element={<Users />} />
               <Route path="/admin/guides" element={<Guides />} />
               <Route path="/admin/packages" element={<Packages />} />
+              <Route path="/admin/bookings" element={<AllBookings />} />
               <Route path="*" element={<AdminDashboard />} />
             </Routes>
           </div>
@@ -71,7 +78,10 @@ function App() {
             <Routes>
               <Route path="/guide/dashboard" element={<GuideDashboard />} />
               <Route path="/guide/bookings" element={<GuideBookings />} />
-              <Route path="/guide/update-status" element={<UpdateBookingStatus />} />
+              <Route
+                path="/guide/update-status"
+                element={<UpdateBookingStatus />}
+              />
               <Route path="*" element={<GuideDashboard />} />
             </Routes>
           </div>

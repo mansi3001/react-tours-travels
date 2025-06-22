@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { signOut } from "firebase/auth";
 import { auth } from "../firebase";
 
-const Header = () => {
+const Header = ({ role }) => {
   const [user, setUser] = useState(null);
   const navigate = useNavigate();
 
@@ -13,20 +13,31 @@ const Header = () => {
   }, []);
 
   const handleLogout = async () => {
+    const storedUser = JSON.parse(localStorage.getItem("user"));
+    const role = storedUser?.role;
     await signOut(auth);
     localStorage.clear();
-    navigate("/");
+    if (role === "admin") navigate("/admin/login");
+    else if (role === "guide") navigate("/guide/login");
+    else navigate("/login");
+
+    window.location.reload();
   };
 
   return (
     <header className="bg-blue-600 text-white px-6 py-4 flex justify-between items-center">
-      <h1 className="text-xl font-bold cursor-pointer" onClick={() => navigate("/")}>
+      <h1
+        className="text-xl font-bold cursor-pointer"
+        onClick={() => navigate("/")}
+      >
         Tour & Travel Portal
       </h1>
       <div className="flex items-center gap-4">
         {user ? (
           <>
-            <span>Welcome {user.role.charAt(0).toUpperCase() + user.role.slice(1)}</span>
+            <span>
+              Welcome {user.role.charAt(0).toUpperCase() + user.role.slice(1)}
+            </span>
             {user.role === "user" && (
               <>
                 <button
