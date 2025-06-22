@@ -30,7 +30,16 @@ const Profile = () => {
       fetchBookings();
     }
   }, [user?.uid]);
-
+  const formatDate = (timestamp) => {
+    if (!timestamp?.seconds) return "N/A";
+    const date = new Date(timestamp.seconds * 1000);
+    return date.toLocaleDateString("en-IN", {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
+    });
+  };
+  console.log({ bookings });
   return (
     <div className="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg mt-6">
       <h2 className="text-3xl font-bold text-gray-800 mb-6">👤 My Profile</h2>
@@ -56,16 +65,19 @@ const Profile = () => {
                 className="border p-4 rounded-lg shadow-sm bg-gray-100"
               >
                 <p>
-                  <strong>Package:</strong> {booking.packageName}
+                  <strong>Package:</strong> {booking.packageTitle || "N/A"}
                 </p>
                 <p>
-                  <strong>Date:</strong> {booking.date}
+                  <strong>Guide:</strong> {booking.guideName || "Not Assigned"}
+                </p>
+                <p>
+                  <strong>Date:</strong> {formatDate(booking.bookedAt)}
                 </p>
                 <p>
                   <strong>Status:</strong>{" "}
                   <span
                     className={`font-semibold ${
-                      booking.status === "Confirmed"
+                      booking.status === "confirmed"
                         ? "text-green-600"
                         : "text-gray-600"
                     }`}

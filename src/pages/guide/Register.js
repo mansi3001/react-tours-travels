@@ -1,31 +1,43 @@
 // src/pages/guide/Register.js
-import React, { useState } from 'react';
-import { auth, db } from '../../firebase';
-import { createUserWithEmailAndPassword } from 'firebase/auth';
-import { useNavigate } from 'react-router-dom';
-import PasswordInput from '../../components/PasswordInput';
-import { doc, setDoc } from 'firebase/firestore';
+import React, { useState } from "react";
+import { auth, db } from "../../firebase";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { useNavigate } from "react-router-dom";
+import PasswordInput from "../../components/PasswordInput";
+import { doc, setDoc } from "firebase/firestore";
 
 const GuideRegister = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [error, setError] = useState('');
+  const [email, setEmail] = useState("");
+  const [name, setName] = useState("");
+  // const [experience, setExperience] = useState('');
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
   const handleRegister = async (e) => {
     e.preventDefault();
-    setError('');
+    setError("");
     try {
-      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
-      await setDoc(doc(db, 'guides', userCredential.user.uid), {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
         email,
-        role: 'guide',
+        password
+      );
+      await setDoc(doc(db, "guides", userCredential.user.uid), {
+        name,
+        email,
+        role: "guide",
       });
-      localStorage.setItem('user', JSON.stringify({
-        ...userCredential.user,
-        role: 'guide'
-      }));
-      navigate('/guide/login');
+      localStorage.setItem(
+        "user",
+        JSON.stringify({
+          uid: userCredential.user.uid,
+          email,
+          role: "guide",
+          name,
+        })
+      );
+      navigate("/guide/login");
     } catch (err) {
       setError(err.message);
     }
@@ -33,9 +45,20 @@ const GuideRegister = () => {
 
   return (
     <div className="flex justify-center items-center h-screen bg-gray-100">
-      <form onSubmit={handleRegister} className="bg-white p-8 rounded shadow-md w-full max-w-md">
+      <form
+        onSubmit={handleRegister}
+        className="bg-white p-8 rounded shadow-md w-full max-w-md"
+      >
         <h2 className="text-2xl font-bold mb-6">Guide Register</h2>
         {error && <p className="text-red-500 mb-4">{error}</p>}
+        <input
+          type="text"
+          placeholder="Name"
+          className="w-full mb-4 px-4 py-2 border rounded"
+          value={name}
+          onChange={(e) => setName(e.target.value)}
+          required
+        />
         <input
           type="email"
           placeholder="Email"
@@ -48,7 +71,12 @@ const GuideRegister = () => {
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
-        <button type="submit" className="w-full bg-green-600 text-white py-2 rounded">Register</button>
+        <button
+          type="submit"
+          className="w-full bg-green-600 text-white py-2 rounded"
+        >
+          Register
+        </button>
       </form>
     </div>
   );

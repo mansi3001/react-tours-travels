@@ -48,7 +48,7 @@ const PackageDetails = () => {
     alert("Booking successful!");
     navigate("/user/booking-history");
   };
-
+  console.log({guides});
   if (!pkg) return <p>Loading...</p>;
 
   return (
@@ -70,7 +70,7 @@ const PackageDetails = () => {
           <option value="">-- Book Without Guide --</option>
           {guides.map((guide) => (
             <option key={guide.id} value={guide.id}>
-              {guide.name} ({guide.experience})
+              {guide.name}
             </option>
           ))}
         </select>

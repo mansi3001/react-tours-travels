@@ -35,7 +35,6 @@ const GuideBookings = () => {
 
   return (
     <>
-      <Header />
       <main className="p-6 bg-gray-100 min-h-screen">
         <h1 className="text-3xl font-bold mb-6">Assigned Bookings</h1>
         <table className="min-w-full bg-white rounded shadow-md">
