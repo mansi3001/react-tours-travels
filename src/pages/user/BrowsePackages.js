@@ -16,16 +16,14 @@ const BrowsePackages = () => {
       return;
     }
 
-    const fetchPackages = async () => {
+    (async () => {
       const snapshot = await getDocs(collection(db, "packages"));
       const packagesList = snapshot.docs.map((doc) => ({
         id: doc.id,
         ...doc.data(),
       }));
       setPackages(packagesList);
-    };
-
-    fetchPackages();
+    })()
   }, [navigate]);
 
   const bookPackage = async (pkg) => {

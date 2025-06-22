@@ -71,28 +71,27 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 
 
-I want to create a tourism project in ReactJS with the following features:
+# 🌍 Tour & Travel Booking Portal
 
-🔹 General Description:
-It's a tourism booking website.
+A full-featured **Tour & Travel Booking Portal** built with **ReactJS** and **Firebase**. The platform supports three roles: **Admin**, **Guide**, and **User**, each with tailored functionality.
 
-Users can browse packages and book them.
+---
 
-There are 3 panels: User, Admin, and Guide.
+## 🚀 Features
 
-🔹 Admin Panel Features:
+### 🛠️ Admin Panel:
 Admin login/logout
 Manage users (view, delete)
 Manage guides
 Manage travel packages (add/edit/delete)
 View booking details
 
-🔹 Guide Panel Features:
+### 🧭 Guide Panel:
 Guide login
 View assigned bookings
 Update tour status
 
-🔹 User Panel:
+### 👤 User Panel:
 Browse packages
 Book tours
 View booking history
@@ -104,8 +103,13 @@ Storage: Firebase Firestore for main data, localStorage for caching user info or
 
 🔹 Requirements:
 Login system using Firebase Auth for Admin, Guide, and Users
-Use Firebase Firestore to store all data (packages, bookings, users)
+Use Firebase Firestore to store all data (packages, bookings, users, admin, guides)
 Store logged-in user info in localStorage
 Responsive UI with Tailwind CSS
 
-💬 Please provide me the full project code step-by-step starting with Firebase setup and React folder structure
+FIRBASE_API_KEY = "AIzaSyCWwg-PISrhJ4k-qRzFhjTM7dllV3GaK10"
+FIRBASE_AUTH_DOMAIN = "tourism-booking-39ca2.firebaseapp.com"
+FIRBASE_PROJECT_ID = "tourism-booking-39ca2"
+FIRBASE_STORAGE_BUCKET = "tourism-booking-39ca2.firebasestorage.app"
+FIRBASE_SENDER_ID = "1029009783078"
+FIRBASE_APP_ID = "1:1029009783078:web:560a6177b2d4315baa29e7"

@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { collection, query, where, getDocs } from "firebase/firestore";
 import { db } from "../../firebase";
+import { Link } from "react-router-dom";
 
 const BookingHistory = () => {
   const [bookings, setBookings] = useState([]);
@@ -78,6 +79,14 @@ const BookingHistory = () => {
       ) : (
         <p className="text-gray-500">No bookings found.</p>
       )}
+      <div className="text-center mt-10">
+        <Link
+          to="/user/browse-packages"
+          className="inline-block bg-blue-600 text-white px-6 py-2 rounded-lg shadow hover:bg-blue-700 transition"
+        >
+          🌍 Browse More Packages
+        </Link>
+      </div>
     </div>
   );
 };
